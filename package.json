@@ -1,0 +1,19 @@
+{
+  "name": "ej_twitter",
+  "version": "1.0.0",
+  "description": "twitter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinMullin224/ej_twitter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KevinMullin224/ej_twitter/issues"
+  },
+  "homepage": "https://github.com/KevinMullin224/ej_twitter#readme"
+}
