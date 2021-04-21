@@ -9,6 +9,9 @@
 const User = require("../models/User");
 const tweet = require("../models/Tweet");
 
+const hash = require("../database/bcrypt");
+
+//DEVOLVER MENSAJE DE ERROR SI USUARIO ESTA REPETIDO EN DB
 const sendRegister = async (req, res) => {
   try {
     const user = new User({
@@ -16,7 +19,7 @@ const sendRegister = async (req, res) => {
       lastName: req.body.lastName,
       userName: req.body.userName,
       email: req.body.email,
-      password: req.body.password,
+      password: hash(req.body.password),
     });
     await user.save();
     //CAMBIAR REDIRECT DE HOME A LOGIN
