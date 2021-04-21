@@ -8,6 +8,7 @@ const tweetsSchema = new Schema({
   },
   user: {
     type: Number,
+    required: true,
     //enum: [users]
   },
   createdAt: {
