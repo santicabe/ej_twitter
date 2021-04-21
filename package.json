@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/KevinMullin224/ej_twitter/issues"
   },
-  "homepage": "https://github.com/KevinMullin224/ej_twitter#readme"
+  "homepage": "https://github.com/KevinMullin224/ej_twitter#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.5",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  }
 }
