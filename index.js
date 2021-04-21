@@ -7,7 +7,7 @@ app.set("view engine", "ejs");
 
 require("./database/mongoDB");
 
-//const routes = require("./routes/routes");
-//app.use(routes);
+const routes = require("./routes/routes");
+app.use(routes);
 
 app.listen(port, () => console.log(`Servidor en http://localhost:${port}/`));
