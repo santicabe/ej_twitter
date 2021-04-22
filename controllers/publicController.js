@@ -8,7 +8,6 @@
 
 const User = require("../models/User");
 const Tweet = require("../models/Tweet");
-
 const hash = require("../database/bcrypt");
 
 //DEVOLVER MENSAJE DE ERROR SI USUARIO ESTA REPETIDO EN DB

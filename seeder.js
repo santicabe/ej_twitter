@@ -35,5 +35,5 @@ const data = async () => {
   }
 };
 
-data();
+//data();
 module.exports = data;
