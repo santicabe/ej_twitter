@@ -27,4 +27,12 @@ const sendRegister = async (req, res) => {
   }
 };
 
-module.exports = { sendRegister };
+const showUser = async (req, res) => {
+  const user = await User.findOne({ userName: req.params.username });
+  const tweets = await Tweet.find({ user: user });
+  console.log(tweets);
+
+  res.render("user");
+};
+
+module.exports = { sendRegister, showUser };
