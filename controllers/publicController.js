@@ -1,12 +1,32 @@
 //PUBLIC CONTROLLER
 //showHome GET
-//showProfile GET
-//showLogin POST
-//showRegister POST
+//showUser GET
+//showLogin GET
+//sendLogin POST
+//showRegister GET
+//sendRegister POST
 
-const user = require("../models/User");
+const User = require("../models/User");
 const tweet = require("../models/Tweet");
 
-//here goes controllers
+const hash = require("../database/bcrypt");
 
-module.exports = {};
+//DEVOLVER MENSAJE DE ERROR SI USUARIO ESTA REPETIDO EN DB
+const sendRegister = async (req, res) => {
+  try {
+    const user = new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      userName: req.body.userName,
+      email: req.body.email,
+      password: hash(req.body.password),
+    });
+    await user.save();
+    //CAMBIAR REDIRECT DE HOME A LOGIN
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports = { sendRegister };

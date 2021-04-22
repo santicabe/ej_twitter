@@ -1,9 +1,17 @@
+const { render } = require("ejs");
 const express = require("express");
 const router = express.Router();
 
-const controller = require("../controllers/controller");
+const publicController = require("../controllers/publicController");
+const loginControl = require("../controllers/loginController");
 
-//router.get("/", controller.findUsers);
-//router.post("/", controller.newUser);
+router.get("/", (req, res) => res.render("login", {}));
+///ADD MESAGE WHEN PASSWORD IS WRONG - PASSPORT FLASH
+router.post("/", loginControl);
+
+router.get("/register", (req, res) => res.render("register", {}));
+router.post("/register", publicController.sendRegister);
+
+router.get("/home", (req, res) => res.render("home", {}));
 
 module.exports = router;
