@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const User = require("./User");
 
 const tweetsSchema = new Schema({
   text: {
@@ -7,16 +8,18 @@ const tweetsSchema = new Schema({
     maxLength: 140,
   },
   user: {
-    type: Number,
-    required: true,
-    //enum: [users]
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
   createdAt: {
     type: Date,
   },
-  likes: {
-    type: Number,
-  },
+  likes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 module.exports = model("tweets", tweetsSchema);
