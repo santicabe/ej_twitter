@@ -17,6 +17,7 @@ const usersSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -29,18 +30,24 @@ const usersSchema = new Schema({
     type: String,
     //default: defaultFoto
   },
-  listTweets: {
-    type: [String],
-    //enum: [tweets]
-  },
-  listFollowing: {
-    type: [String],
-    //enum: [users]
-  },
-  listFollowers: {
-    type: [String],
-    //enum: [users]
-  },
+  listTweets: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Tweet",
+    },
+  ],
+  listFollowing: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  listFollowers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 module.exports = model("users", usersSchema);
