@@ -28,7 +28,4 @@ require("./controllers/passportController");
 const routes = require("./routes/routes");
 app.use(routes);
 
-//REMOVE CONSOLE LOG ONCE ITS PROBLEM IS FIXED
-console.log("FIX DEPRECIATION WARNING IN MODEL USER, UNIQUE IS DEPRECIATED");
-
 app.listen(port, () => console.log(`Servidor en http://localhost:${port}/`));
