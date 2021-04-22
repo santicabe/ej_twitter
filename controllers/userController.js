@@ -9,8 +9,6 @@ const Tweet = require("../models/Tweet");
 const moment = require("moment-timezone");
 
 const tweetCreate = async (req, res) => {
-  console.log(req.user);
-  //const date =
   try {
     const tweet = new Tweet({
       text: req.body.text,
