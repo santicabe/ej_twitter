@@ -1,7 +1,7 @@
 //const db = require("./database/mongoDB");
 const faker = require("faker");
-const user = require("./models/User");
-//const tweet = require("./models/Tweet");
+const User = require("./models/User");
+const Tweet = require("./models/Tweet");
 
 faker.locale = "es";
 
@@ -9,10 +9,8 @@ faker.locale = "es";
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
  */
-const data = () => {
-  //para cada nuevo usuario -> esto es un for?
+const data = async () => {
   for (let i = 0; i < 15; i++) {
-    //hacer uno nuevo con faker
     const newUser = {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
@@ -20,12 +18,22 @@ const data = () => {
       email: faker.internet.email(),
       password: faker.internet.password(),
     };
-    user.create(newUser);
+    await User.create(newUser);
     console.log(newUser);
   }
-  //crear ese nuevo usuario con los datos generados -> nueva const que guarda todo lo anterior
+
+  const users = await User.find();
+
+  for (let i = 0; i < 15; i++) {
+    const random = Math.floor(Math.random() * 16);
+    const newTweet = {
+      text: faker.lorem.words(5),
+      user: users[random].id,
+    };
+    await Tweet.create(newTweet);
+    console.log(newTweet);
+  }
 };
 
-//cargar nuevo usuario a la base de datos
 data();
 module.exports = data;
