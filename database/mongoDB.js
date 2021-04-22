@@ -4,6 +4,7 @@ const data = require("../seeder");
 mongoose.connect("mongodb://localhost/ej-twitter", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
 mongoose.connection

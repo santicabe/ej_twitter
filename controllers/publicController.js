@@ -7,7 +7,7 @@
 //sendRegister POST
 
 const User = require("../models/User");
-const tweet = require("../models/Tweet");
+const Tweet = require("../models/Tweet");
 
 const hash = require("../database/bcrypt");
 
@@ -22,8 +22,7 @@ const sendRegister = async (req, res) => {
       password: hash(req.body.password),
     });
     await user.save();
-    //CAMBIAR REDIRECT DE HOME A LOGIN
-    res.redirect("/");
+    res.redirect("/home");
   } catch (err) {
     console.log(err);
   }
