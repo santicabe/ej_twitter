@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const data = require("../seeder");
 
 mongoose.connect("mongodb://localhost/ej-twitter", {
   useNewUrlParser: true,
@@ -7,5 +8,8 @@ mongoose.connect("mongodb://localhost/ej-twitter", {
 });
 
 mongoose.connection
-  .once("open", () => console.log("Connection with Mongo is activated"))
+  .once("open", () => {
+    console.log("Connection with Mongo is activated");
+    //data();
+  })
   .on("error", (error) => console.log(error));
