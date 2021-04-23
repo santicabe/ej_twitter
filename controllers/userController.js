@@ -18,6 +18,10 @@ const tweetCreate = async (req, res) => {
     });
     if (req.user) {
       await tweet.save();
+
+      const user = await User.findOne({ userName: req.user.userName });
+      await user.listTweets.push(tweet);
+      user.save();
     }
     res.redirect("/home");
   } catch (error) {

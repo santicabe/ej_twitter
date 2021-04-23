@@ -30,6 +30,12 @@ const usersSchema = new Schema({
     type: String,
     //default: defaultFoto
   },
+  listTweets: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Tweet",
+    },
+  ],
   listFollowing: [
     {
       type: Schema.Types.ObjectId,
