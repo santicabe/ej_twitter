@@ -28,13 +28,11 @@ const tweetCreate = async (req, res) => {
   }
 };
 
+//ADD ERROR CODES TO THE ERRORS
 const tweetDelete = async (req, res) => {
   try {
     const tweetId = req.params.id;
-    console.log("1- " + tweetId);
-    console.log("2- " + req.user);
     const user = await User.findOne({ _id: req.user._id });
-    console.log("3- " + user);
     if (user.listTweets.includes(tweetId)) {
       const user = await User.findOne({ userName: req.user.userName });
       const positionTweet = user.listTweets.indexOf(tweetId);
