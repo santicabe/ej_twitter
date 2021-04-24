@@ -29,13 +29,12 @@ const sendRegister = async (req, res) => {
 };
 
 const showUser = async (req, res) => {
-  const user = await User.findOne({ userName: req.params.username })
+  await User.findOne({ userName: req.params.username })
     .populate({ path: "listTweets", model: Tweet })
     .exec((err, data) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(data);
         res.render("user", { data });
       }
     });

@@ -10,11 +10,9 @@
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.min.css'>
   <!-- Custom css-->
   <link rel="stylesheet" href="/css/user.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
   
 </head>
-
 <body>
   <!-- Fixed top navbar -->
 <nav class="navbar navbar-toggleable-md fixed-top">
@@ -112,7 +110,6 @@
           </ul>
         </div>
         <div class="col">
-
         </div>
       </div>
     </div>
@@ -123,7 +120,7 @@
         <!-- Left column -->
         <div class="profile-header">
           <!-- Header information -->
-          <h3 class="profile-fullname"><a><%= data.firstName %> <%= data.lastName %>  <a></h3>
+          <h3 class="profile-fullname"><a><%= data.firstName %> <%= data.lastName %>  </a></h3>
           <h2 class="profile-element"><a>@<%= data.userName %> </a></h2>
           <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-link"></i>&nbsp;<%= data.email %> </a>
           <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-location"></i>&nbsp;Vitoria-Gasteiz, Spain</a>
@@ -154,7 +151,7 @@
                 <img class="tweet-card-avatar" src="https://pbs.twimg.com/profile_images/679974972278849537/bzzb-6H4_bigger.jpg" alt="">
               </a>
               <div class="tweet-text">
-                <h6 class="" lang="es" data-aria-label-part="0"><%= element.text %> 
+                <h6 class="" lang="es" data-aria-label-part="0"><%= element.text %> >
                 </h6>
               </div>
               <div class="tweet-footer">
@@ -163,9 +160,11 @@
                 </a>
               </div>
               <div class="tweet-footer">
-                <a class="tweet-footer-btn" href="#">
-                  <i class="fas fa-trash-alt"></i><span> 0</span>
-                </a>
+                <form action="<%= "/delete/" + element._id %>" method="POST">
+                  <button type="submit">
+                    <span><i class="fas fa-trash-alt"></i></span>
+                  </button>
+                </form>
               </div>
             </div>
           </li>
@@ -175,15 +174,12 @@
         <!-- End: tweet list -->
       </div>
       <!-- End: Center content column -->
-      <div class="col right-col">
-        
+      <div class="col right-col"> 
       </div>
     </div>
   </div>
   <script src='https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
-
-  
 </body>
 </html>

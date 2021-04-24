@@ -18,7 +18,6 @@ const tweetCreate = async (req, res) => {
     });
     if (req.user) {
       await tweet.save();
-
       const user = await User.findOne({ userName: req.user.userName });
       await user.listTweets.push(tweet);
       user.save();
@@ -29,4 +28,27 @@ const tweetCreate = async (req, res) => {
   }
 };
 
-module.exports = { tweetCreate };
+const tweetDelete = async (req, res) => {
+  try {
+    const tweetId = req.params.id;
+    console.log("1- " + tweetId);
+    console.log("2- " + req.user);
+    const user = await User.findOne({ _id: req.user._id });
+    console.log("3- " + user);
+    if (user.listTweets.includes(tweetId)) {
+      const user = await User.findOne({ userName: req.user.userName });
+      const positionTweet = user.listTweets.indexOf(tweetId);
+      await user.listTweets.splice(positionTweet, 1);
+      user.save();
+      Tweet.findOne({ _id: tweetId }).remove();
+      res.redirect("/username/" + req.user.userName);
+    } else {
+      res.send("INVALID USER");
+    }
+  } catch (error) {
+    console.log(error);
+    res.send("ERROR");
+  }
+};
+
+module.exports = { tweetCreate, tweetDelete };

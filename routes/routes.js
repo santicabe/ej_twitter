@@ -17,5 +17,6 @@ router.get("/home", authenticate, (req, res) => res.render("home", {}));
 router.post("/home", authenticate, userController.tweetCreate);
 
 router.get("/username/:username", publicController.showUser);
+router.post("/delete/:id", userController.tweetDelete);
 
 module.exports = router;
