@@ -251,10 +251,12 @@
             </div>
             <div class="centro__col">
               <div class="centro__row centro__row--user">
-                <h3 class="centro__h3">
-                  <%= element.user.firstName %> <%= element.user.lastName %>
-                </h3>
-                <h4 class="centro__h4"><%= element.user.userName %></h4>
+                <a href="/username/<%= element.user.userName %>">
+                  <h3 class="centro__h3">
+                    <%= element.user.firstName %> <%= element.user.lastName %>
+                  </h3></a
+                >
+                <h4 class="centro__h4">@<%= element.user.userName %></h4>
                 <span class="centro__tiempo">15s</span>
               </div>
               <div class="centro__row">

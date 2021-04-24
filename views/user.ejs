@@ -140,7 +140,10 @@
       <!-- Center content column -->
       <div class="col-6">
         <ol class="tweet-list">
-          <% data.listTweets.forEach(element => { %>
+<% for( let i = data.listTweets.length - 1; i >= 0; i-- ) { %>
+
+
+          
            
           
           <li class="tweet-card">
@@ -150,26 +153,26 @@
                   <strong><%= data.firstName %> <%= data.lastName %>  </strong>
                 </span>
                 <span class="username">@<%= data.userName %> </span>
-                <span class="tweet-time">- <%= element.createdAt %> </span>
+                <span class="tweet-time">- <%= data.listTweets[i].createdAt %> </span>
               </div>
               <a>
                 <img class="tweet-card-avatar" src="https://pbs.twimg.com/profile_images/679974972278849537/bzzb-6H4_bigger.jpg" alt="">
               </a>
               <div class="tweet-text">
-                <h6 class="" lang="es" data-aria-label-part="0"><%= element.text %> >
+                <h6 class="" lang="es" data-aria-label-part="0"><%= data.listTweets[i].text %> 
                 </h6>
               </div>
               <div class="tweet-footer">
-                <form action="<%= "/like/" + element._id %>" method="POST" class="tweet-footer-btn">
+                <form action="<%= "/like/" + data.listTweets[i]._id %>" method="POST" class="tweet-footer-btn">
                   <button type="submit">
-                    <span><i class="octicon octicon-heart" aria-hidden="true"><%= element.likes.length %></i><span> </span>
+                    <span><i class="octicon octicon-heart" aria-hidden="true"><%= data.listTweets[i].likes.length %> </i><span> </span>
                   </button>
                 </form>
                   
                 
               </div>
               <div class="tweet-footer">
-                <form action="<%= "/delete/" + element._id %>" method="POST">
+                <form action="<%= "/delete/" + data.listTweets[i]._id %>" method="POST">
                   <button type="submit">
                     <span><i class="fas fa-trash-alt"></i></span>
                   </button>
@@ -177,8 +180,8 @@
               </div>
             </div>
           </li>
-          <% }) %>
-        
+          
+          <% } %>
         </ol>
         <!-- End: tweet list -->
       </div>

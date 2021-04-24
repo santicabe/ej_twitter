@@ -43,10 +43,12 @@ const showHome = async (req, res) => {
 const showUser = async (req, res) => {
   await User.findOne({ userName: req.params.username })
     .populate({ path: "listTweets", model: Tweet })
+    .sort("-createdAt")
     .exec((err, data) => {
       if (err) {
         console.log(err);
       } else {
+        console.log(data);
         res.render("user", { data });
       }
     });
