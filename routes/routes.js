@@ -19,4 +19,7 @@ router.post("/home", authenticate, userController.tweetCreate);
 router.get("/username/:username", publicController.showUser);
 router.post("/delete/:id", userController.tweetDelete);
 
+router.post("/follow/:username", userController.followUser);
+router.post("/unfollow/:username", userController.unfollowUser);
+
 module.exports = router;

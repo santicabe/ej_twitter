@@ -92,13 +92,13 @@
             <li>
               <a>
                 <span class="profile-stats-item profile-stats-item-label">Following</span>
-                <span class="profile-stats-item profile-stats-item-number">q</span>
+                <span class="profile-stats-item profile-stats-item-number"><%= data.listFollowing.length %> </span>
               </a>
             </li>
             <li>
               <a>
                 <span class="profile-stats-item profile-stats-item-label">Followers</span>
-                <span class="profile-stats-item profile-stats-item-number">q</span>
+                <span class="profile-stats-item profile-stats-item-number"><%= data.listFollowers.length %> </span>
               </a>
             </li>
             <li>
@@ -125,7 +125,12 @@
           <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-link"></i>&nbsp;<%= data.email %> </a>
           <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-location"></i>&nbsp;Vitoria-Gasteiz, Spain</a>
           <h2 class="profile-element"><i class="octicon octicon-calendar"></i>Joined November 2012</h2>
-          <button class="btn btn-search-bar tweet-to-btn">Tweet to Jon Vadillo</button>
+          <form action="/follow/<%= data.userName %> " method="POST">
+            <button class="btn btn-search-bar tweet-to-btn">Sigue a <%= data.userName %> </button>
+          </form>
+          <form action="/unfollow/<%= data.userName %> " method="POST">
+            <button class="btn btn-search-bar tweet-to-btn">Dejar de seguir a <%= data.userName %> </button>
+          </form>
           
           
           <!-- End: image grid -->

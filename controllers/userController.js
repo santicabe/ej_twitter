@@ -49,4 +49,41 @@ const tweetDelete = async (req, res) => {
   }
 };
 
-module.exports = { tweetCreate, tweetDelete };
+const followUser = async (req, res) => {
+  const follow = await User.findOne({ userName: req.params.username });
+  const user = req.user;
+
+  if (String(follow._id) == String(user._id)) {
+    res.redirect("/username/" + req.params.username);
+  } else {
+    if (follow.listFollowers.includes(user._id)) {
+      res.redirect("/username/" + req.params.username);
+    } else {
+      await follow.listFollowers.push(user);
+      follow.save();
+      await user.listFollowing.push(follow);
+      user.save();
+      res.redirect("/username/" + req.params.username);
+    }
+  }
+};
+
+const unfollowUser = async (req, res) => {
+  const follow = await User.findOne({ userName: req.params.username });
+  const user = req.user;
+  const userId = req.user._id;
+
+  if (follow.listFollowers.includes(userId)) {
+    const positionUser = follow.listFollowers.indexOf(userId);
+    await follow.listFollowers.splice(positionUser, 1);
+    follow.save();
+    const positionFollow = user.listFollowing.indexOf(follow._id);
+    await user.listFollowing.splice(positionFollow, 1);
+    user.save();
+    res.redirect("/username/" + req.params.username);
+  } else {
+    res.redirect("/username/" + req.params.username);
+  }
+};
+
+module.exports = { tweetCreate, tweetDelete, followUser, unfollowUser };
