@@ -28,6 +28,18 @@ const sendRegister = async (req, res) => {
   }
 };
 
+const showHome = async (req, res) => {
+  await Tweet.find({ user: [req.user.listFollowing, req.user._id] })
+    .populate({
+      path: "user",
+      model: User,
+    })
+    .sort("-createdAt")
+    .exec((err, tweets) => {
+      res.render("home", { tweets });
+    });
+};
+
 const showUser = async (req, res) => {
   await User.findOne({ userName: req.params.username })
     .populate({ path: "listTweets", model: Tweet })
@@ -40,4 +52,4 @@ const showUser = async (req, res) => {
     });
 };
 
-module.exports = { sendRegister, showUser };
+module.exports = { sendRegister, showUser, showHome };

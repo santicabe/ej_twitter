@@ -13,7 +13,7 @@ router.post("/", loginControl);
 router.get("/register", (req, res) => res.render("register", {}));
 router.post("/register", publicController.sendRegister);
 
-router.get("/home", authenticate, (req, res) => res.render("home", {}));
+router.get("/home", authenticate, publicController.showHome);
 router.post("/home", authenticate, userController.tweetCreate);
 
 router.get("/username/:username", publicController.showUser);

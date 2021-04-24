@@ -243,7 +243,7 @@
             </div>
           </form>
         </div>
-
+        <% tweets.forEach(element => { %>
         <div class="centro__tweets">
           <section class="centro__tweet">
             <div class="centro__col">
@@ -251,23 +251,14 @@
             </div>
             <div class="centro__col">
               <div class="centro__row centro__row--user">
-                <h3 class="centro__h3">User</h3>
-                <h4 class="centro__h4">@user</h4>
+                <h3 class="centro__h3">
+                  <%= element.user.firstName %> <%= element.user.lastName %>
+                </h3>
+                <h4 class="centro__h4"><%= element.user.userName %></h4>
                 <span class="centro__tiempo">15s</span>
               </div>
               <div class="centro__row">
-                <p class="centro__text">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Molestiae adipisci laudantium repellat ut ex temporibus sed id
-                  soluta, deleniti quia ad, optio voluptates asperiores
-                  distinctio quasi quod?<a
-                    href="#"
-                    title="Modi, consectetur eveniet."
-                  >
-                    Modi, consectetur eveniet.</a
-                  >
-                </p>
-                <img class="centro__img" src="img/redbull.png" alt="" />
+                <p class="centro__text"><%= element.text %></p>
               </div>
 
               <ul class="centro__ul">
@@ -317,6 +308,7 @@
             </div>
           </section>
         </div>
+        <% }) %>
       </div>
     </div>
 
