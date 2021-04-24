@@ -86,4 +86,26 @@ const unfollowUser = async (req, res) => {
   }
 };
 
-module.exports = { tweetCreate, tweetDelete, followUser, unfollowUser };
+const tweetLike = async (req, res) => {
+  const userId = req.user._id;
+
+  console.log("1 -" + req.params.id);
+  console.log("2 -" + req.user);
+  const tweet = await Tweet.findOne({ _id: req.params.id });
+  const user = await User.findById(tweet.user);
+  console.log("3 -" + tweet);
+
+
+  if (tweet.likes.includes(userId)) {
+    const positionLike = tweet.likes.indexOf(userId);
+    await tweet.likes.splice(positionLike, 1);
+    tweet.save();
+    res.redirect("/username/" + user.userName);
+  } else {
+    await tweet.likes.push(userId);
+    tweet.save();
+    res.redirect("/username/" + user.userName);
+  }
+}
+
+module.exports = { tweetCreate, tweetDelete, followUser, unfollowUser, tweetLike };

@@ -22,4 +22,8 @@ router.post("/delete/:id", userController.tweetDelete);
 router.post("/follow/:username", userController.followUser);
 router.post("/unfollow/:username", userController.unfollowUser);
 
+router.post("/like/:id", userController.tweetLike);
+
+
+
 module.exports = router;
