@@ -61,19 +61,30 @@ const showUser = async (req, res) => {
         console.log(err);
       } else {
         const logUser = req.user;
-
-        console.log(data);
         let likeTotal = 0;
         for (let i = 0; i < data.listTweets.length; i++) {
           likeTotal = likeTotal + data.listTweets[0].length;
         }
-        console.log(likeTotal);
         res.render("user", { data, likeTotal, logUser });
       }
     });
 };
 
 const deleteUser = async (req, res) => {
+  const users = await User.find({ _id: [...req.user.listFollowers] });
+
+  users.forEach((element) => {
+    for (let i = 0; i < element.listFollowing.length; i++) {
+      if (String(element.listFollowing[i]) === String(req.user._id)) {
+        console.log(element);
+      }
+    }
+  });
+
+  /* await Tweet.deleteMany({ user: [req.user._id] }).exec();
+
+  await User.findOneAndDelete({ userName: req.user.userName }).exec();
+ */
   res.redirect("/");
 };
 

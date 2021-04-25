@@ -13,6 +13,8 @@ router.post("/", loginControl);
 router.get("/register", (req, res) => res.render("register", {}));
 router.post("/register", publicController.sendRegister);
 
+router.post("/deleteUser/:username", authenticate, publicController.deleteUser);
+
 router.get("/home", authenticate, publicController.showHome);
 router.post("/home", authenticate, userController.tweetCreate);
 
@@ -23,7 +25,5 @@ router.post("/follow/:username", userController.followUser);
 router.post("/unfollow/:username", userController.unfollowUser);
 
 router.post("/like/:id", userController.tweetLike);
-
-
 
 module.exports = router;
