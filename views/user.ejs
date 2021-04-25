@@ -14,49 +14,14 @@
   
 </head>
 <body>
-  <!-- Fixed top navbar -->
-<nav class="navbar navbar-toggleable-md fixed-top">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse container">
-    <!-- Navbar navigation links -->
-    
-    <!-- END: Navbar navigation links -->
-    <!-- Navbar Search form -->
-    <form class="navbar-form" role="search">
-      <div class="input-group">
-        <input type="text" class="form-control input-search" placeholder="Search Twitter" name="srch-term" id="srch-term">
-        <div class="input-group-btn">
-          <button class="btn btn-default btn-search" type="submit"><i class="octicon octicon-search navbar-search-icon"></i></button>
-        </div>
-      </div>
-    </form>
-    <!-- END: Navbar Search form -->
-    <!-- Navbar User menu -->
-    <div class="dropdown navbar-user-dropdown">
-      <button class="btn btn-secondary dropdown-toggle btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <form action="/deleteUser/<%= logUser.userName %> " method="POST">
-        <button class="dropdown-item" href="#">Elminiar mi cuenta</button>
-      </form>
-      </div>
-    </div>
-    <!-- END: Navbar User menu -->
-    <!-- Navbar Tweet button -->
-    <a class="btn btn-search-bar" href="/home">Ir a la página de inicio</a>
-  </div>
-</nav>
-<!-- END: Fixed top navbar -->
 <div class="main-container">
   <!-- Profile background large image -->
   <div class="row profile-background">
     <div class="container">
-	  <!-- User main avatar -->
+	   
       <div class="avatar-container">
+        
         <div class="avatar">
-
         </div>
       </div>
     </div>
@@ -112,14 +77,14 @@
           <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-link"></i>&nbsp;<%= data.email %> </a>
           <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-location"></i>&nbsp;Vitoria-Gasteiz, Spain</a>
           <h2 class="profile-element"><i class="octicon octicon-calendar"></i>Joined November 2012</h2>
-          <form action="/follow/<%= data.userName %> " method="POST">
+          <% if (logUser.userName !== data.userName) { %>
+           <form action="/follow/<%= data.userName %> " method="POST">
             <button class="btn btn-search-bar tweet-to-btn">Sigue a <%= data.userName %> </button>
           </form>
           <form action="/unfollow/<%= data.userName %> " method="POST">
             <button class="btn btn-search-bar tweet-to-btn">Dejar de seguir a <%= data.userName %> </button>
           </form>
-          
-          
+          <% } %>
           <!-- End: image grid -->
         </div>
       </div>
@@ -127,12 +92,7 @@
       <!-- Center content column -->
       <div class="col-6">
         <ol class="tweet-list">
-<% for( let i = data.listTweets.length - 1; i >= 0; i-- ) { %>
-
-
-          
-           
-          
+          <% for( let i = data.listTweets.length - 1; i >= 0; i-- ) { %>
           <li class="tweet-card">
             <div class="tweet-content">
               <div class="tweet-header">
@@ -143,27 +103,34 @@
                 <span class="tweet-time">- <%= data.listTweets[i].createdAt %> </span>
               </div>
               <a>
-                <img class="tweet-card-avatar" src="https://pbs.twimg.com/profile_images/679974972278849537/bzzb-6H4_bigger.jpg" alt="">
+                <img class="tweet-card-avatar" src="../img/user.jpg" alt="">
               </a>
               <div class="tweet-text">
                 <h6 class="" lang="es" data-aria-label-part="0"><%= data.listTweets[i].text %> 
                 </h6>
               </div>
               <div class="tweet-footer">
-                <form action="<%= "/like/" + data.listTweets[i]._id %>" method="POST" class="tweet-footer-btn">
-                  <button type="submit">
+                <div class="row ">
+                  <div class="col"> 
+                    <form action="<%= "/like/" + data.listTweets[i]._id %>" method="POST" class="tweet-footer-btn">
+                    <button type="submit">
                     <span><i class="octicon octicon-heart" aria-hidden="true"><%= data.listTweets[i].likes.length %> </i><span> </span>
                   </button>
                 </form>
-                  
-                
               </div>
-              <div class="tweet-footer">
-                <form action="<%= "/delete/" + data.listTweets[i]._id %>" method="POST">
-                  <button type="submit">
+              <div class="col d-flex justify-content-end">
+                <% if (logUser.userName === data.userName) { %>
+                 <form action="<%= "/delete/" + data.listTweets[i]._id %>" method="POST">
+                    <button type="submit">
                     <span><i class="fas fa-trash-alt"></i></span>
                   </button>
                 </form>
+                <% } %>
+              </div>
+                </div>
+               
+                
+                 
               </div>
             </div>
           </li>

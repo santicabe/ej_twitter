@@ -26,37 +26,60 @@
     </nav>
 
     <div class="container">
-      <h3>Registro Nuevo Usuario</h3>
-      <form action="/register" method="POST">
-        <div class="mb-3">
-          <label class="form-label">First Name:</label>
-          <input type="text" name="firstName" class="form-control" required />
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <h3>Registro Nuevo Usuario</h3>
+          <form action="/register" method="POST">
+            <div class="mb-3">
+              <label class="form-label">First Name:</label>
+              <input
+                type="text"
+                name="firstName"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Last Name:</label>
+              <input
+                type="text"
+                name="lastName"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email:</label>
+              <input type="text" name="email" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Username:</label>
+              <input
+                type="text"
+                name="userName"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password:</label>
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="submit"
+                value="Inicia sesión en Twitter"
+                class="btn btn-login w-100"
+              />
+            </div>
+          </form>
         </div>
-        <div class="mb-3">
-          <label class="form-label">Last Name:</label>
-          <input type="text" name="lastName" class="form-control" required />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Email:</label>
-          <input type="text" name="email" class="form-control" required />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Username:</label>
-          <input type="text" name="userName" class="form-control" required />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Password:</label>
-          <input
-            type="password"
-            name="password"
-            class="form-control"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <input type="submit" value="Log In" class="btn btn-login" />
-        </div>
-      </form>
+      </div>
     </div>
   </body>
 </html>
