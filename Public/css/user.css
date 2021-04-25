@@ -89,7 +89,7 @@ a {
 
 .avatar {
   background: #fff;
-  background-image: url(https://pbs.twimg.com/profile_images/679974972278849537/bzzb-6H4_400x400.jpg);
+  /* background-image: url(../img/user.jpg); */
   border: 5px solid #fff;
   border-radius: 50%;
   height: 200px;
