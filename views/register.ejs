@@ -10,11 +10,23 @@
       integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="css/register.css" />
     <title>Document</title>
   </head>
   <body>
+    <nav class="navbar justify-content-center">
+      <a class="navbar-brand logo" href="#"><i class="fab fa-twitter"></i></a>
+    </nav>
+
     <div class="container">
-      <h1>Registro Nuevo Usuario</h1>
+      <h3>Registro Nuevo Usuario</h3>
       <form action="/register" method="POST">
         <div class="mb-3">
           <label class="form-label">First Name:</label>
@@ -42,7 +54,7 @@
           />
         </div>
         <div class="mb-3">
-          <input type="submit" value="Log In" class="btn btn-dark" />
+          <input type="submit" value="Log In" class="btn btn-login" />
         </div>
       </form>
     </div>

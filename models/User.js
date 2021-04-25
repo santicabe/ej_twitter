@@ -28,7 +28,7 @@ const usersSchema = new Schema({
   },
   profileFoto: {
     type: String,
-    //default: defaultFoto
+    //default: defaultFoto,
   },
   listTweets: [
     {

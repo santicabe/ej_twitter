@@ -1,0 +1,14 @@
+body{
+    background-color: #181818; 
+    color: white;
+}
+
+nav{
+    background-color: #181818; 
+    color: #1da1f2;
+}
+
+.btn-login{
+    color: white;
+    background-color: #1da1f2;
+}
