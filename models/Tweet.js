@@ -24,8 +24,3 @@ const tweetsSchema = new Schema({
 });
 
 module.exports = model("tweets", tweetsSchema);
-
-//Text - STRING
-//Autor - STRING?
-//creat date - DATE
-//likes - NUMBER

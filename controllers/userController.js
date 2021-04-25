@@ -1,10 +1,3 @@
-//USER CONTROLLER
-//tweetCreate POST
-//tweetDelete DELETE
-//followUser PATCH
-//editProfile PATCH
-//logout GET or POST?
-
 const User = require("../models/User");
 const Tweet = require("../models/Tweet");
 const moment = require("moment-timezone");
@@ -95,7 +88,6 @@ const tweetLike = async (req, res) => {
   const user = await User.findById(tweet.user);
   console.log("3 -" + tweet);
 
-
   if (tweet.likes.includes(userId)) {
     const positionLike = tweet.likes.indexOf(userId);
     await tweet.likes.splice(positionLike, 1);
@@ -106,6 +98,12 @@ const tweetLike = async (req, res) => {
     tweet.save();
     res.redirect("/username/" + user.userName);
   }
-}
+};
 
-module.exports = { tweetCreate, tweetDelete, followUser, unfollowUser, tweetLike };
+module.exports = {
+  tweetCreate,
+  tweetDelete,
+  followUser,
+  unfollowUser,
+  tweetLike,
+};

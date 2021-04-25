@@ -10,6 +10,5 @@ mongoose.connect("mongodb://localhost/ej-twitter", {
 mongoose.connection
   .once("open", () => {
     console.log("Connection with Mongo is activated");
-    //data();  //Al descomentar alimenta la DB
   })
   .on("error", (error) => console.log(error));

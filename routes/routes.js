@@ -7,7 +7,6 @@ const loginControl = require("../controllers/loginController");
 const authenticate = require("../middleware/authenticate");
 
 router.get("/", (req, res) => res.render("login", {}));
-///ADD MESAGE WHEN PASSWORD IS WRONG - PASSPORT FLASH
 router.post("/", loginControl);
 
 router.get("/register", (req, res) => res.render("register", {}));
@@ -18,7 +17,7 @@ router.post("/deleteUser/:username", authenticate, publicController.deleteUser);
 router.get("/home", authenticate, publicController.showHome);
 router.post("/home", authenticate, userController.tweetCreate);
 
-router.get("/username/:username", publicController.showUser);
+router.get("/username/:username", authenticate, publicController.showUser);
 router.post("/delete/:id", userController.tweetDelete);
 
 router.post("/follow/:username", userController.followUser);
