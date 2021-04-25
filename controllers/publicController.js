@@ -48,10 +48,15 @@ const showUser = async (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(data);
-        res.render("user", { data });
+        const logUser = req.user;
+        console.log(logUser);
+        res.render("user", { data, logUser });
       }
     });
 };
 
-module.exports = { sendRegister, showUser, showHome };
+const deleteUser = async (req, res) => {
+  res.redirect("/");
+};
+
+module.exports = { sendRegister, showUser, showHome, deleteUser };

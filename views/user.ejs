@@ -22,20 +22,7 @@
 
   <div class="collapse navbar-collapse container">
     <!-- Navbar navigation links -->
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/home"><i class="octicon octicon-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="octicon octicon-zap"></i> Moments</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="octicon octicon-bell"></i> Notifications</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="octicon octicon-inbox"></i> Messages</a>
-      </li>
-    </ul>
+    
     <!-- END: Navbar navigation links -->
     <!-- Navbar Search form -->
     <form class="navbar-form" role="search">
@@ -51,14 +38,14 @@
     <div class="dropdown navbar-user-dropdown">
       <button class="btn btn-secondary dropdown-toggle btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+        <form action="/deleteUser/<%= logUser.userName %> " method="POST">
+        <button class="dropdown-item" href="#">Elminiar mi cuenta</button>
+      </form>
       </div>
     </div>
     <!-- END: Navbar User menu -->
     <!-- Navbar Tweet button -->
-    <button class="btn btn-search-bar">Tweet</button>
+    <a class="btn btn-search-bar" href="/home">Ir a la página de inicio</a>
   </div>
 </nav>
 <!-- END: Fixed top navbar -->
