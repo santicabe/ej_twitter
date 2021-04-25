@@ -61,13 +61,10 @@ const showUser = async (req, res) => {
         console.log(err);
       } else {
         const logUser = req.user;
-
-        console.log(data);
         let likeTotal = 0;
         for (let i = 0; i < data.listTweets.length; i++) {
-          likeTotal = likeTotal + data.listTweets[0].length;
+          likeTotal = likeTotal + data.listTweets[i].likes.length;
         }
-        console.log(likeTotal);
         res.render("user", { data, likeTotal, logUser });
       }
     });
