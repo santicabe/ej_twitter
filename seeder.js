@@ -35,5 +35,6 @@ const data = async () => {
   }
 };
 
+//WARNING, WILL ACTIVATE THE SEEDER IF COMMENT REMOVED
 //data();
 module.exports = data;

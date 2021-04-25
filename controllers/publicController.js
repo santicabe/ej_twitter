@@ -1,11 +1,3 @@
-//PUBLIC CONTROLLER
-//showHome GET
-//showUser GET
-//showLogin GET
-//sendLogin POST
-//showRegister GET
-//sendRegister POST
-
 const User = require("../models/User");
 const Tweet = require("../models/Tweet");
 const hash = require("../database/bcrypt");

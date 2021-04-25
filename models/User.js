@@ -51,13 +51,3 @@ const usersSchema = new Schema({
 });
 
 module.exports = model("users", usersSchema);
-
-//name - STRING
-//lname - STRING
-//username - STRING
-//email - STRING
-//descr - STRING
-//foto - STRING
-//lista tweets - ARRAY?
-//lista seguidos - ARRAY
-//lista seguidores - ARRAY
