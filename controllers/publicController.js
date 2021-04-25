@@ -29,15 +29,27 @@ const sendRegister = async (req, res) => {
 };
 
 const showHome = async (req, res) => {
-  await Tweet.find({ user: [req.user.listFollowing, req.user._id] })
-    .populate({
-      path: "user",
-      model: User,
-    })
-    .sort("-createdAt")
-    .exec((err, tweets) => {
-      res.render("home", { tweets });
-    });
+  if (req.user.listFollowing.length === 0) {
+    await Tweet.find({ user: [req.user._id] })
+      .populate({
+        path: "user",
+        model: User,
+      })
+      .sort("-createdAt")
+      .exec((err, tweets) => {
+        res.render("home", { tweets });
+      });
+  } else {
+    await Tweet.find({ user: [req.user.listFollowing, req.user._id] })
+      .populate({
+        path: "user",
+        model: User,
+      })
+      .sort("-createdAt")
+      .exec((err, tweets) => {
+        res.render("home", { tweets });
+      });
+  }
 };
 
 const showUser = async (req, res) => {
@@ -49,8 +61,14 @@ const showUser = async (req, res) => {
         console.log(err);
       } else {
         const logUser = req.user;
-        console.log(logUser);
-        res.render("user", { data, logUser });
+
+        console.log(data);
+        let likeTotal = 0;
+        for (let i = 0; i < data.listTweets.length; i++) {
+          likeTotal = likeTotal + data.listTweets[0].length;
+        }
+        console.log(likeTotal);
+        res.render("user", { data, likeTotal, logUser });
       }
     });
 };
