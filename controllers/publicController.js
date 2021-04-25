@@ -61,20 +61,28 @@ const showUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-  const users = await User.find({ _id: [...req.user.listFollowers] });
-
-  users.forEach((element) => {
-    for (let i = 0; i < element.listFollowing.length; i++) {
-      if (String(element.listFollowing[i]) === String(req.user._id)) {
-        console.log(element);
-      }
-    }
+  const users = await User.find({
+    _id: [...req.user.listFollowers, ...req.user.listFollowing],
   });
 
-  /* await Tweet.deleteMany({ user: [req.user._id] }).exec();
+  users.forEach(async (element) => {
+    for (let i = 0; i < element.listFollowing.length; i++) {
+      if (String(element.listFollowing[i]) === String(req.user._id)) {
+        element.listFollowing.splice(i, 1);
+      }
+    }
+    for (let i = 0; i < element.listFollowers.length; i++) {
+      if (String(element.listFollowers[i]) === String(req.user._id)) {
+        element.listFollowers.splice(i, 1);
+      }
+    }
+    await element.save();
+  });
+
+  await Tweet.deleteMany({ user: [req.user._id] }).exec();
 
   await User.findOneAndDelete({ userName: req.user.userName }).exec();
- */
+
   res.redirect("/");
 };
 
