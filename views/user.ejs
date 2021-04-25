@@ -15,12 +15,35 @@
 </head>
 <body>
 <div class="main-container">
+  -<nav class="navbar navbar-toggleable-md fixed-top">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse container">
+      <!-- Navbar navigation links -->
+      
+      <!-- END: Navbar navigation links -->
+      <!-- Navbar User menu -->
+      <div class="dropdown navbar-user-dropdown">
+        <button class="btn btn-secondary dropdown-toggle btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <form action="/deleteUser/<%= logUser.userName %> " method="POST">
+          <button class="dropdown-item" href="#">Elminiar mi cuenta</button>
+        </form>
+        </div>
+      </div>
+      <!-- END: Navbar User menu -->
+      <!-- Navbar Tweet button -->
+      <a class="btn btn-search-bar" href="/home">Ir a la página de inicio</a>
+    </div>
+  </nav>
   <!-- Profile background large image -->
   <div class="row profile-background">
     <div class="container">
 	   
       <div class="avatar-container">
-        
+        <!-- <img src="../Public/img/user.jpg" class="img-thumbnail" alt="..."> -->
         <div class="avatar">
         </div>
       </div>
@@ -72,11 +95,11 @@
         <!-- Left column -->
         <div class="profile-header">
           <!-- Header information -->
-          <h3 class="profile-fullname"><a><%= data.firstName %> <%= data.lastName %>  </a></h3>
+          <h3 class="profile-fullname "><a><%= data.firstName %> <%= data.lastName %>  </a></h3>
           <h2 class="profile-element"><a>@<%= data.userName %> </a></h2>
           <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-link"></i>&nbsp;<%= data.email %> </a>
           <a class="profile-element profile-website" hrerf=""><i class="octicon octicon-location"></i>&nbsp;Vitoria-Gasteiz, Spain</a>
-          <h2 class="profile-element"><i class="octicon octicon-calendar"></i>Joined November 2012</h2>
+          <h2 class="profile-element"><i class="octicon octicon-calendar"></i>Joined...</h2>
           <% if (logUser.userName !== data.userName) { %>
            <form action="/follow/<%= data.userName %> " method="POST">
             <button class="btn btn-search-bar tweet-to-btn">Sigue a <%= data.userName %> </button>

@@ -75,6 +75,71 @@ form input, form textarea, form select {
   display: block;
 }
 
+/* Top Navbar elements' styles */
+.navbar {
+  background-color: #15202b;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+
+}
+.navbar-nav > li a {
+  color: #66757f;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.input-search {
+  font-size: 13px;
+}
+
+.input-search,
+.btn-search {
+  background-color: #f5f8fa;
+  border-radius: 21px;
+  border: 1px solid #e6ecf0;
+}
+.btn-search {
+  background-color: #fff;
+}
+
+.navbar-search-icon {
+  color: #66757f;
+}
+
+.btn-circle {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-image: url(https://pbs.twimg.com/profile_images/679974972278849537/bzzb-6H4_normal.jpg);
+}
+
+.btn-search-bar {
+  padding: 8px;
+  border-radius: 100px;
+  border: 1px solid #1da1f2;
+  color: #fff;
+  background-color: #4ab3f4;
+  border-color: transparent;
+  font-weight: bold;
+  font-size: 14px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.btn-search-bar:hover {
+  background-color: #1da1f2;
+  border-color: #1da1f2;
+  cursor: pointer;
+}
+
+.navbar-form {
+  margin-right: 15px;
+}
+
+.navbar-user-dropdown {
+  margin-right: 15px;
+}
+/* END: Top Navbar elements' styles */
+
 ::-webkit-scrollbar {
   width: 10px;
 }

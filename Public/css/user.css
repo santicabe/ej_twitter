@@ -1,5 +1,5 @@
 body {
-  background-color: #e6ecf0;
+  background-color: #15202b;
   padding-top: 54px;
 }
 
@@ -14,7 +14,7 @@ a {
 }
 /* Top Navbar elements' styles */
 .navbar {
-  background-color: #fff;
+  background-color: #15202b;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 .navbar-nav > li a {
@@ -89,7 +89,8 @@ a {
 
 .avatar {
   background: #fff;
-  /* background-image: url(../img/user.jpg); */
+  background-image: url(../img/user.jpg); 
+  background-size: cover;
   border: 5px solid #fff;
   border-radius: 50%;
   height: 200px;
