@@ -21,7 +21,6 @@ const tweetCreate = async (req, res) => {
   }
 };
 
-//ADD ERROR CODES TO THE ERRORS
 const tweetDelete = async (req, res) => {
   try {
     const tweetId = req.params.id;
@@ -81,13 +80,8 @@ const unfollowUser = async (req, res) => {
 
 const tweetLike = async (req, res) => {
   const userId = req.user._id;
-
-  console.log("1 -" + req.params.id);
-  console.log("2 -" + req.user);
   const tweet = await Tweet.findOne({ _id: req.params.id });
   const user = await User.findById(tweet.user);
-  console.log("3 -" + tweet);
-
   if (tweet.likes.includes(userId)) {
     const positionLike = tweet.likes.indexOf(userId);
     await tweet.likes.splice(positionLike, 1);

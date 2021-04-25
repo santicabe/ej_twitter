@@ -3,7 +3,6 @@ const Tweet = require("../models/Tweet");
 const hash = require("../database/bcrypt");
 const path = require("path");
 
-//DEVOLVER MENSAJE DE ERROR SI USUARIO ESTA REPETIDO EN DB
 const sendRegister = async (req, res) => {
   try {
     const user = new User({
