@@ -30,7 +30,7 @@ const tweetDelete = async (req, res) => {
       const positionTweet = user.listTweets.indexOf(tweetId);
       await user.listTweets.splice(positionTweet, 1);
       user.save();
-      Tweet.findOne({ _id: tweetId }).remove();
+      await Tweet.findByIdAndDelete(tweetId);
       res.redirect("/username/" + req.user.userName);
     } else {
       res.send("INVALID USER");
