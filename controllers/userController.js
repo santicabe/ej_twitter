@@ -24,12 +24,10 @@ const tweetCreate = async (req, res) => {
 const tweetDelete = async (req, res) => {
   try {
     const tweetId = req.params.id;
-    const user = await User.findOne({ _id: req.user._id });
-    if (user.listTweets.includes(tweetId)) {
-      const user = await User.findOne({ userName: req.user.userName });
-      const positionTweet = user.listTweets.indexOf(tweetId);
-      await user.listTweets.splice(positionTweet, 1);
-      user.save();
+    if (req.user.listTweets.includes(tweetId)) {
+      const positionTweet = req.user.listTweets.indexOf(tweetId);
+      req.user.listTweets.splice(positionTweet, 1);
+      await req.user.save();
       await Tweet.findByIdAndDelete(tweetId);
       res.redirect("/username/" + req.user.userName);
     } else {
@@ -45,7 +43,7 @@ const followUser = async (req, res) => {
   const follow = await User.findOne({ userName: req.params.username });
   const user = req.user;
 
-  if (String(follow._id) == String(user._id)) {
+  if (String(follow._id) === String(user._id)) {
     res.redirect("/username/" + req.params.username);
   } else {
     if (follow.listFollowers.includes(user._id)) {
