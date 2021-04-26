@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const data = require("../seeder");
 
-mongoose.connect("mongodb://localhost/ej-twitter", {
+mongoose.connect(process.env.MONGO_SERVER, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
