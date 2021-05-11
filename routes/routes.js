@@ -25,4 +25,6 @@ router.post("/unfollow/:username", userController.unfollowUser);
 
 router.post("/like/:id", userController.tweetLike);
 
+router.get("/apiRest", (req, res) => res.json({ hello: "goodbye" }));
+
 module.exports = router;
