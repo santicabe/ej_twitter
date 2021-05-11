@@ -3,6 +3,22 @@ const Tweet = require("../models/Tweet");
 const hash = require("../database/bcrypt");
 const path = require("path");
 
+/* const sendRegister = async (req, res) => {
+  try {
+    const user = new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      userName: req.body.userName,
+      email: req.body.email,
+      password: hash(req.body.password),
+    });
+    await user.save();
+    res.redirect("/home");
+  } catch (err) {
+    console.log(err);
+  }
+}; */
+
 const sendRegister = async (req, res) => {
   try {
     const user = new User({

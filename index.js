@@ -7,6 +7,7 @@ var cors = require("cors");
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 const path = require("path");
 app.set("views", path.join(__dirname, "views"));
@@ -17,7 +18,7 @@ require("./database/mongoDB");
 
 app.use(express.static(__dirname + "/public"));
 
-const passport = require("passport");
+/* const passport = require("passport");
 const session = require("express-session");
 
 app.use(
@@ -29,7 +30,7 @@ app.use(
 );
 
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session()); */
 
 require("./controllers/passportController");
 
