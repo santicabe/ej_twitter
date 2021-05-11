@@ -10,7 +10,7 @@ router.get("/", (req, res) => res.render("login", {}));
 router.post("/", loginControl);
 
 router.get("/register", (req, res) => res.render("register", {}));
-router.post("/register", publicController.sendRegister);
+//router.post("/register", publicController.sendRegister);
 
 router.post("/deleteUser/:username", authenticate, publicController.deleteUser);
 
@@ -25,16 +25,18 @@ router.post("/unfollow/:username", userController.unfollowUser);
 
 router.post("/like/:id", userController.tweetLike);
 
-//LOGIN - POST
-//router.post("/", loginControl);
-
-//REGISTER USER - POST
 router.post("/test", (req, res) => {
   const test = req.body;
   console.log(req.body.userName);
   console.log(test);
   res.json(test);
 });
+
+//LOGIN - POST
+//router.post("/", loginControl);
+
+//REGISTER USER - POST
+router.post("/register", publicController.sendRegister);
 
 //DELETE USER - DELETE
 //router.post("/deleteUser/:username", authenticate, publicController.deleteUser);
