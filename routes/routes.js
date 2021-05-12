@@ -5,11 +5,10 @@ const publicController = require("../controllers/publicController");
 const userController = require("../controllers/userController");
 const loginControl = require("../controllers/loginController");
 const authenticate = require("../middleware/authenticate");
-const jwt = require("jsonwebtoken");
 const checkJwt = require("express-jwt");
 
 router.get("/", (req, res) => res.render("login", {}));
-router.post("/", loginControl);
+//router.post("/", loginControl);
 
 router.get("/register", (req, res) => res.render("register", {}));
 //router.post("/register", publicController.sendRegister);
@@ -35,7 +34,7 @@ router.post("/test", (req, res) => {
 });
 
 //LOGIN - POST
-//router.post("/token", loginControl);
+router.post("/token", loginControl);
 
 //REGISTER USER - POST
 router.post("/user", publicController.sendRegister);
