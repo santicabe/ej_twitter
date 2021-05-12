@@ -5,6 +5,8 @@ const publicController = require("../controllers/publicController");
 const userController = require("../controllers/userController");
 const loginControl = require("../controllers/loginController");
 const authenticate = require("../middleware/authenticate");
+const jwt = require("jsonwebtoken");
+const checkJwt = require("express-jwt");
 
 router.get("/", (req, res) => res.render("login", {}));
 router.post("/", loginControl);
@@ -33,10 +35,10 @@ router.post("/test", (req, res) => {
 });
 
 //LOGIN - POST
-//router.post("/", loginControl);
+//router.post("/token", loginControl);
 
 //REGISTER USER - POST
-router.post("/register", publicController.sendRegister);
+router.post("/user", publicController.sendRegister);
 
 //DELETE USER - DELETE
 //router.post("/deleteUser/:username", authenticate, publicController.deleteUser);
@@ -61,6 +63,20 @@ router.post("/register", publicController.sendRegister);
 
 //LIKE TWEET - PATCH?
 //router.post("/like/:id", userController.tweetLike);
+router.post("/api/test-JWT-login1", (req, res) => {
+  const user = req.body;
+  jwt.sign({ user }, "/YGVcde3", (err, token) => {
+    res.json({ token });
+  });
+});
+
+router.post(
+  "/api/test-JWT-login2",
+  checkJwt({ secret: "/YGVcde3", algorithms: ["HS256"] }),
+  (req, res) => {
+    res.json(req.user);
+  }
+);
 
 router.get("/apiRest", (req, res) => res.json({ hello: "goodbye" }));
 
