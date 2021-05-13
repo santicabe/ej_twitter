@@ -7,6 +7,8 @@ const loginControl = require("../controllers/loginController");
 const authenticate = require("../middleware/authenticate");
 const checkJwt = require("express-jwt");
 
+const User = require("../models/User");
+
 router.get("/", (req, res) => res.render("login", {}));
 //router.post("/", loginControl);
 
@@ -73,10 +75,17 @@ router.post("/api/test-JWT-login1", (req, res) => {
 router.post(
   "/token/auth",
   checkJwt({ secret: "/YGVcde3", algorithms: ["HS256"] }),
-  (req, res) => {
+  async (req, res) => {
     const body = req.body.user;
-    console.log(body);
-    res.send(body.userName === req.user.userToken.userName);
+    const userFound = await User.findOne({
+      userName: body.userName,
+    });
+    console.log(userFound);
+    if (userFound === null) {
+      res.send(false);
+    } else {
+      res.send(userFound.userName === req.user.userToken.userName);
+    }
   }
 );
 
