@@ -42,11 +42,14 @@ router.post("/token", loginControl.login);
 //REGISTER USER - POST
 router.post("/user", publicController.sendRegister);
 
+//USER - GET
+router.get("/user/:username", publicController.showUser);
+
 //DELETE USER - DELETE
 //router.post("/deleteUser/:username", authenticate, publicController.deleteUser);
 
 //GET TWEETS - GET
-//router.get("/home", authenticate, publicController.showHome);
+router.get("/tweets", authenticate, publicController.showHome);
 
 //CREATE TWEET - POST
 //router.post("/home", authenticate, userController.tweetCreate);
