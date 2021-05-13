@@ -3,19 +3,20 @@ const Tweet = require("../models/Tweet");
 const moment = require("moment-timezone");
 
 const tweetCreate = async (req, res) => {
+  const user = await User.findOne({ userName: req.body.userName });
   try {
     const tweet = new Tweet({
       text: req.body.text,
-      user: req.user,
-      createdAt: moment().tz("Pacific/Galapagos").format("LLL"),
+      user: user,
+      createdAt: moment()
+        .tz("Pacific/Galapagos")
+        .format("YYYY-MM-DDTHH:mm:ss.SSS"),
     });
-    if (req.user) {
-      await tweet.save();
-      const user = await User.findOne({ userName: req.user.userName });
-      await user.listTweets.push(tweet);
-      user.save();
-    }
-    res.redirect("/home");
+    await tweet.save();
+    await user.listTweets.push(tweet);
+    await user.save();
+    //MUST SEND TWEET TO FRONT
+    //res.redirect("/home");
   } catch (error) {
     console.log(error);
   }

@@ -46,10 +46,10 @@ router.post("/user", publicController.sendRegister);
 //router.post("/deleteUser/:username", authenticate, publicController.deleteUser);
 
 //GET TWEETS - GET
-//router.get("/home", authenticate, publicController.showHome);
+router.get("/tweet/:username", publicController.showHome);
 
 //CREATE TWEET - POST
-//router.post("/home", authenticate, userController.tweetCreate);
+router.post("/tweet", /* authenticate, */ userController.tweetCreate);
 
 //GET USER TWEETS - GET
 //router.get("/username/:username", authenticate, publicController.showUser);

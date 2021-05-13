@@ -20,8 +20,12 @@ const sendRegister = async (req, res) => {
 };
 
 const showHome = async (req, res) => {
+  const username = req.params.username;
+  console.log("1 -" + username);
+  const user = await User.findOne({ userName: username });
+  console.log("2 -" + user);
   await Tweet.find({
-    user: [...req.user.listFollowing, req.user._id],
+    user: [...user.listFollowing, user._id],
   })
     .populate({
       path: "user",
@@ -29,7 +33,7 @@ const showHome = async (req, res) => {
     })
     .sort("-createdAt")
     .exec((err, tweets) => {
-      res.render("home", { tweets });
+      res.json({ tweets });
     });
 };
 
