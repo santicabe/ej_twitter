@@ -34,7 +34,8 @@ router.post("/test", (req, res) => {
 });
 
 //LOGIN - POST
-router.post("/token", loginControl);
+router.post("/token", loginControl.login);
+//router.post("/token/auth", loginControl.auth);
 
 //REGISTER USER - POST
 router.post("/user", publicController.sendRegister);
@@ -70,10 +71,12 @@ router.post("/api/test-JWT-login1", (req, res) => {
 });
 
 router.post(
-  "/api/test-JWT-login2",
+  "/token/auth",
   checkJwt({ secret: "/YGVcde3", algorithms: ["HS256"] }),
   (req, res) => {
-    res.json(req.user);
+    const body = req.body.user;
+    console.log(body);
+    res.send(body.userName === req.user.userToken.userName);
   }
 );
 
