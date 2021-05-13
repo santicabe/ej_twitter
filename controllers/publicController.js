@@ -13,7 +13,6 @@ const sendRegister = async (req, res) => {
       password: hash(req.body.password),
     });
     await user.save();
-    res.redirect("/home");
   } catch (err) {
     console.log(err);
   }
@@ -50,7 +49,8 @@ const showUser = async (req, res) => {
         for (let i = 0; i < data.listTweets.length; i++) {
           likeTotal = likeTotal + data.listTweets[i].likes.length;
         }
-        res.render("user", { data, likeTotal, logUser });
+
+        res.json({ data, likeTotal, logUser });
       }
     });
 };
