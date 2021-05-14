@@ -7,6 +7,8 @@ const loginControl = require("../controllers/loginController");
 const authenticate = require("../middleware/authenticate");
 const checkJwt = require("express-jwt");
 
+const auth = checkJwt({ secret: "/YGVcde3", algorithms: ["HS256"] });
+
 const User = require("../models/User");
 
 router.get("/", (req, res) => res.render("login", {}));
@@ -35,11 +37,10 @@ router.post("/test", (req, res) => {
   res.json(test);
 });
 
-//LOGIN - POST
+//LOGIN - POST - COMPLETE
 router.post("/token", loginControl.login);
-//router.post("/token/auth", loginControl.auth);
 
-//REGISTER USER - POST
+//REGISTER USER - POST - COMPLETE
 router.post("/user", publicController.sendRegister);
 
 //USER - GET
@@ -48,11 +49,11 @@ router.get("/user/:username", publicController.showUser);
 //DELETE USER - DELETE
 //router.post("/deleteUser/:username", authenticate, publicController.deleteUser);
 
-//GET TWEETS - GET
-router.get("/tweet/:username", publicController.showHome);
+//GET TWEETS - GET - COMPLETE
+router.get("/tweets/", auth, publicController.showHome);
 
-//CREATE TWEET - POST
-router.post("/tweet", /* authenticate, */ userController.tweetCreate);
+//CREATE TWEET - POST - COMPLETE
+router.post("/tweet", auth, userController.tweetCreate);
 
 //GET USER TWEETS - GET
 //router.get("/username/:username", authenticate, publicController.showUser);
@@ -75,7 +76,7 @@ router.post("/api/test-JWT-login1", (req, res) => {
   });
 });
 
-router.post(
+/* router.post(
   "/token/auth",
   checkJwt({ secret: "/YGVcde3", algorithms: ["HS256"] }),
   async (req, res) => {
@@ -90,7 +91,7 @@ router.post(
       res.send(userFound.userName === req.user.userToken.userName);
     }
   }
-);
+); */
 
 router.get("/apiRest", (req, res) => res.json({ hello: "goodbye" }));
 

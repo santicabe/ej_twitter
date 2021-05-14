@@ -22,11 +22,4 @@ const login = async (req, res) => {
   }
 };
 
-/* const auth = async (req, res) => {
-  checkJwt({ secret: "/YGVcde3", algorithms: ["HS256"] }),
-     console.log(user);
-      console.log(req.user); 
-    res.json(req.user);
-};  */
-
 module.exports = { login };

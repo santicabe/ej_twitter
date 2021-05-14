@@ -2,6 +2,7 @@ const User = require("../models/User");
 const Tweet = require("../models/Tweet");
 const hash = require("../database/bcrypt");
 const path = require("path");
+const { date } = require("faker");
 
 const sendRegister = async (req, res) => {
   try {
@@ -19,10 +20,8 @@ const sendRegister = async (req, res) => {
 };
 
 const showHome = async (req, res) => {
-  const username = req.params.username;
-  console.log("1 -" + username);
+  const username = req.user.userToken.userName;
   const user = await User.findOne({ userName: username });
-  console.log("2 -" + user);
   await Tweet.find({
     user: [...user.listFollowing, user._id],
   })
