@@ -41,20 +41,34 @@ const tweetDelete = async (req, res) => {
 };
 
 const followUser = async (req, res) => {
-  const follow = await User.findOne({ userName: req.params.username });
-  const user = req.user;
+  console.log(req.body.username);
+  console.log(req.body.user);
 
-  if (String(follow._id) === String(user._id)) {
-    res.redirect("/username/" + req.params.username);
+  if (req.body.username === req.body.user.userName) {
+    res.send(false); //no se puede hacer nada
+    console.log("no te podes seguir a vos mismo");
   } else {
+    const follow = await User.findOne({ userName: req.body.username });
+    const user = await User.findOne({ userName: req.body.user.userName });
+
+    console.log(follow);
+    console.log(user);
+
     if (follow.listFollowers.includes(user._id)) {
-      res.redirect("/username/" + req.params.username);
+      const positionUser = follow.listFollowers.indexOf(user._id);
+      await follow.listFollowers.splice(positionUser, 1);
+      follow.save();
+      const positionFollow = user.listFollowing.indexOf(follow._id);
+      await user.listFollowing.splice(positionFollow, 1);
+      user.save();
+      res.send(false); //no se hace nada
+      console.log("unfollow");
     } else {
       await follow.listFollowers.push(user);
-      follow.save();
+      await follow.save();
       await user.listFollowing.push(follow);
-      user.save();
-      res.redirect("/username/" + req.params.username);
+      await user.save();
+      res.json(user.listFollowing);
     }
   }
 };

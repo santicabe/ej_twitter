@@ -60,8 +60,8 @@ router.post("/tweet", /* authenticate, */ userController.tweetCreate);
 //DELETE TWEET - DELETE
 //router.post("/delete/:id", userController.tweetDelete);
 
-//FOLLOW USER - PATCH?
-//router.post("/follow/:username", userController.followUser);
+//FOLLOW USER - PATCH
+router.patch("/user/:username", userController.followUser);
 
 //UNFOLLOW USER - PATCH?
 //router.post("/unfollow/:username", userController.unfollowUser);
