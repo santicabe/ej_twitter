@@ -69,30 +69,5 @@ router.patch("/user/:username", userController.followUser);
 
 //LIKE TWEET - PATCH?
 //router.post("/like/:id", userController.tweetLike);
-router.post("/api/test-JWT-login1", (req, res) => {
-  const user = req.body;
-  jwt.sign({ user }, "/YGVcde3", (err, token) => {
-    res.json({ token });
-  });
-});
-
-/* router.post(
-  "/token/auth",
-  checkJwt({ secret: "/YGVcde3", algorithms: ["HS256"] }),
-  async (req, res) => {
-    const body = req.body.user;
-    const userFound = await User.findOne({
-      userName: body.userName,
-    });
-    console.log(userFound);
-    if (userFound === null) {
-      res.send(false);
-    } else {
-      res.send(userFound.userName === req.user.userToken.userName);
-    }
-  }
-); */
-
-router.get("/apiRest", (req, res) => res.json({ hello: "goodbye" }));
 
 module.exports = router;
